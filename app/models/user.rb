@@ -34,21 +34,29 @@ class User < ActiveRecord::Base
   end
 
   ## TODO 実装
-  def have(item)
-  end
-
-  def unhave(item)
-  end
-
-  def have?(item)
-  end
-
   def want(item)
+    wants.create(item_id: item.id)
   end
 
   def unwant(item)
+    wants.find_by(item_id: item.id).destroy
   end
 
   def want?(item)
+     want_items.include?(item)
   end
+  
+  def have(item)
+    haves.create(item_id: item.id)
+  end
+
+  def unhave(item)
+    haves.find_by(item_id: item.id).destroy
+  end
+
+  def have?(item)
+    have_items.include?(item)
+  end
+
+
 end
