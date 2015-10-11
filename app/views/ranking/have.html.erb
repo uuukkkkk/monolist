@@ -1,0 +1,29 @@
+<% content_for :head do %>
+  <title>monolist ランキングページ持っているものリスト</title>
+  <meta name="description" content="持ってるモノのランキング表示しています。" />
+<% end %>
+<div class="container">
+    <div class="container-inner inner-sm clearfix">
+        <h1>have ランキングページ</h1>
+        <table class="table table-hover">
+            <tr>
+                <th style="width:14%;">イメージ</th>
+                <th>タイトル</th>
+                <th style="width:14%;">Have数</th>
+            </tr>
+            <% @ranking.each do |item| %>
+            <tr>
+                <td>
+                    <% if item.small_image.present? %>
+                        <%= image_tag(item.small_image) %>
+                    <% else %>
+                        <%= image_tag("no-image.png" , alt: item.title) %>
+                    <% end %>
+                </td>
+                <td><%= link_to item.title,item %></td>
+                <td><%= item.haves.count %></td>
+            </tr>
+            <% end %>
+        </table>
+    </div>
+</div>
