@@ -4,15 +4,17 @@
 <% end %>
 <div class="container">
     <div class="container-inner inner-sm clearfix">
-        <h1>have ランキングページ</h1>
+        <h1>Have ランキングページ</h1>
         <table class="table table-hover">
             <tr>
+                <th style="width:6%;">順位</th>
                 <th style="width:14%;">イメージ</th>
                 <th>タイトル</th>
                 <th style="width:14%;">Have数</th>
             </tr>
-            <% @ranking.each do |item| %>
+            <% @ranking.each_with_index do |item , i| %>
             <tr>
+                <td><b><%= i+1 %></b>位</td>
                 <td>
                     <% if item.small_image.present? %>
                         <%= image_tag(item.small_image) %>
@@ -21,7 +23,7 @@
                     <% end %>
                 </td>
                 <td><%= link_to item.title,item %></td>
-                <td><%= item.haves.count %></td>
+                <td><span class="label label-primary"><%= item.haves.count %></span></td>
             </tr>
             <% end %>
         </table>
